@@ -1,4 +1,4 @@
-FROM jboss/keycloak:9.0.2
+FROM quay.io/keycloak/keycloak:9.0.2
 
 COPY magic-link/target/magic-link.jar /opt/jboss/keycloak/standalone/deployments/
 RUN touch /opt/jboss/keycloak/standalone/deployments/magic-link.jar.dodeploy

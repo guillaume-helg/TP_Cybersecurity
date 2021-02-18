@@ -1,0 +1,51 @@
+services:
+  # Serveur LDAP
+  demo-ldap:
+    build:
+      context: ./ldap
+    container_name: demo-ldap
+    networks:
+      - demo-network
+
+  # Serveur Mail (MailHog)
+  demo-mail:
+    image: mailhog/mailhog
+    container_name: demo-mail
+    ports:
+      - "8025:8025" # Interface Web
+    networks:
+      - demo-network
+
+  # Keycloak avec thèmes et providers personnalisés
+  demo-keycloak:
+    build:
+      context: .
+      dockerfile: keycloak/Dockerfile
+    container_name: demo-keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/tmp/realm-export.json  # Import realm on startup
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak/config/realm-export.json:/tmp/realm-export.json  # Mount the realm config
+    depends_on:
+      - demo-ldap
+      - demo-mail
+    networks:
+      - demo-network
+
+  # Application JS Console
+  demo-js-console:
+    build:
+      context: ./js-console
+    container_name: demo-js-console
+    ports:
+      - "8000:80"
+    networks:
+      - demo-network
+
+networks:
+  demo-network:
+    driver: bridge
