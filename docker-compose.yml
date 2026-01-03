@@ -26,6 +26,9 @@ services:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
       - KEYCLOAK_IMPORT=/tmp/realm-export.json  # Import realm on startup
+
+      # Allow upload script
+      - JAVA_OPTS=-server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dkeycloak.profile.feature.upload_scripts=enabled
     ports:
       - "8080:8080"
     volumes:
@@ -42,7 +45,7 @@ services:
       context: ./js-console
     container_name: demo-js-console
     ports:
-      - "8000:80"
+      - "3000:80"
     networks:
       - demo-network
 

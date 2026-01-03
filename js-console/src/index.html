@@ -36,6 +36,7 @@
             <li><a href="#" onclick="output(kc.idToken)">ID Token</a></li>
             <li><a href="#" onclick="output(kc.token)">Access Token</a></li>
             <li><a href="#" onclick="output(kc.refreshToken)">Refresh Token</a></li>
+            <li><a href="#" onclick="output(kc)">All info</a></li>
         </ul>
     </div>
 </nav>
@@ -84,6 +85,8 @@
     }
 
     var kc = Keycloak();
+
+    console.log(kc)
 
     var updateProfile = function() {
         var d = '<div style="text-align: center;">';
