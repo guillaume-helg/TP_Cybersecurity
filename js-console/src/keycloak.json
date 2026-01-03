@@ -1,5 +1,8 @@
 {
-  "realm" : "demo",
-  "auth-server-url" : "http://localhost:8080/auth",
-  "resource" : "js-console"
+  "realm": "Hyrule",
+  "auth-server-url": "http://localhost:8080/auth/",
+  "ssl-required": "external",
+  "resource": "sanctuaire-notes",
+  "public-client": true,
+  "confidential-port": 0
 }
