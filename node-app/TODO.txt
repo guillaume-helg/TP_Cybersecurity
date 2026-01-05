@@ -1,0 +1,11 @@
+Front:
+//code-front --> Supprimer les donnée et les mettres dans un file
+//index.html et style.css faire un CSS encore mieux
+
+Back:
+//server.js --> découper en petit fichier et rendre propre le code
+            --> Mettre les notes dans un fichier à part !
+            --> Créer des routes pour les donnés ? (CRUD en plus)
+
+
+//Keycloak faire un beau login en html

@@ -770,7 +770,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
+      "secret": "a5fdff67-bf83-45f6-99db-0366c62bca78",
       "redirectUris": [
         "http://127.0.0.1:3000/*",
         "http://localhost:3000/*"

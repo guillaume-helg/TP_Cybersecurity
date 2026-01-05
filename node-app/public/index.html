@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système de Gestion des Notes - RBAC</title>
+    <link href="/style.css" rel="stylesheet" /></head>
+    <script type="text/javascript" src="code_front.js"></script>
+<body>
+<div class="container">
+    <h1>Système de Gestion des Notes</h1>
+
+    <div id="login-section">
+        <button onclick="login()">Se connecter</button>
+    </div>
+
+    <div id="app-section" style="display:none;">
+        <div class="user-info">
+            Connecté en tant que : <span id="user-name"></span>
+
+            <div id="user-roles">
+                <p><strong>Rôles :</strong></p>
+            </div>
+            <button onclick="logout()">Déconnexion</button>
+        </div>
+
+        <div id="messages"></div>
+
+        <div id="ue-container"></div>
+    </div>
+</div>
+</body>
+</html>

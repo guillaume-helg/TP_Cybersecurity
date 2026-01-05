@@ -5,7 +5,7 @@ services:
       context: ./ldap
     container_name: demo-ldap
     networks:
-      - demo-network
+      - net-identity
 
   # Serveur Mail (MailHog)
   demo-mail:
@@ -14,7 +14,7 @@ services:
     ports:
       - "8025:8025" # Interface Web
     networks:
-      - demo-network
+      - net-messaging
 
   # Keycloak avec thèmes et providers personnalisés
   demo-keycloak:
@@ -30,25 +30,36 @@ services:
       # Allow upload script
       - JAVA_OPTS=-server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dkeycloak.profile.feature.upload_scripts=enabled
     ports:
-      - "8080:8080"
+      - "8080:8080" # Keycloak
+      - "3000:3000" # Node App
     volumes:
       - ./keycloak/config/realm-export.json:/tmp/realm-export.json  # Mount the realm config
     depends_on:
       - demo-ldap
       - demo-mail
     networks:
-      - demo-network
+      - net-identity   # LDAP
+      - net-messaging  # Mail
+      - net-application # App Node
 
-  # Application JS Console
-  demo-js-console:
+  # App node
+  node-app:
     build:
-      context: ./js-console
-    container_name: demo-js-console
-    ports:
-      - "3000:80"
-    networks:
-      - demo-network
+      context: ./node-app
+    container_name: node-app
+    env_file:
+      - ./node-app/.env
+    network_mode: service:demo-keycloak
+    depends_on:
+      - demo-keycloak
 
 networks:
-  demo-network:
+  net-identity:    # Lien LDAP <-> Keycloak
+    driver: bridge
+    internal: true # Sécurité max: pas d'accès internet sortant
+
+  net-messaging:   # Lien Mail <-> Keycloak
+    driver: bridge
+
+  net-application: # Lien App Node <-> Keycloak
     driver: bridge
