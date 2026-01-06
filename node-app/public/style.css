@@ -1,3 +1,26 @@
+/* --- VARIABLES & RESET --- */
+:root {
+    /* Palette de couleurs (Indigo Theme) */
+    --primary: #4f46e5;       /* Indigo moderne */
+    --primary-hover: #4338ca;
+    --success: #10b981;       /* Vert émeraude */
+    --success-hover: #059669;
+    --danger: #ef4444;        /* Rouge vif */
+    --danger-hover: #dc2626;
+    --warning: #f59e0b;       /* Ambre */
+
+    --bg-app: #f3f4f6;        /* Gris très clair pour le fond */
+    --bg-card: #ffffff;
+
+    --text-main: #1f2937;     /* Gris foncé lisible */
+    --text-muted: #6b7280;    /* Gris moyen */
+    --border: #e5e7eb;        /* Bordures subtiles */
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 12px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,189 +28,322 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 40px 20px;
 }
 
+/* --- CONTENEUR PRINCIPAL --- */
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* On retire le fond blanc du conteneur global pour laisser respirer les cartes */
+    background-color: transparent;
+    box-shadow: none;
 }
 
 h1 {
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
 }
 
-.user-info {
-    position: relative;
-    background-color: #e8f4f8;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.user-info h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.user-info #user-name{
-    font-weight: bolder;
-}
-
-.user-info #user-roles{
-    margin: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.user-info #user-roles .role-badge{
-    margin-top: 5px;
-    display: list-item;
-    width: max-content;
-}
-
-.user-info > button{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-
-    background-color: #ff3c3c;
-    color: #FFF;
-}
-
-.roles {
+/* --- SECTION LOGIN --- */
+#login-section {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+#login-section button {
+    font-size: 1.2rem;
+    padding: 15px 40px;
+}
+
+/* --- BARRE UTILISATEUR (User Info) --- */
+.user-info {
+    background-color: var(--bg-card);
+    padding: 20px 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 30px;
+
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border: 1px solid var(--border);
 }
 
+.user-info span#user-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-left: 5px;
+}
+
+/* Gestion des rôles en ligne */
+#user-roles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+#user-roles p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-right: 5px;
+}
+
+/* Badges des rôles */
 .role-badge {
-    background-color: #238df4;
+    display: inline-block;
+    background-color: #e0e7ff; /* Indigo très clair */
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Bouton déconnexion */
+.user-info > button {
+    /* Reset position absolute */
+    position: static;
+    background-color: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.user-info > button:hover {
+    background-color: var(--danger);
     color: white;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 14px;
 }
 
+/* --- CARTES DES UEs --- */
 .ue-section {
-    margin: 20px 0;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease;
 }
 
+.ue-section:hover {
+    transform: translateY(-2px); /* Léger effet de levée au survol */
+}
+
+/* En-tête de la carte UE */
 .ue-section h3 {
-    color: #238df4;
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--bg-app);
+    padding-bottom: 15px;
 }
 
+/* --- TABLEAUX --- */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 15px 0;
-}
-
-table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-collapse: separate; /* Nécessaire pour le border-radius des rows */
+    border-spacing: 0;
+    margin-bottom: 25px;
 }
 
 table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
+    background-color: var(--bg-app);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 12px 15px;
+    text-align: left;
 }
 
+table th:first-child { border-top-left-radius: 8px; }
+table th:last-child { border-top-right-radius: 8px; }
+
+table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Inputs de notes */
 input[type="number"] {
     width: 80px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #f9fafb;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
 }
 
-.btn-primary {
-    background-color: #238df4;
-    color: white;
-}
-
-.btn-success {
-    background-color: #3fc55e;
-    color: white;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: white;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-button:disabled {
-    background-color: #ccc;
+input[type="number"]:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
     cursor: not-allowed;
 }
 
-.message {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+/* --- ACTION BUTTONS --- */
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end; /* Alignés à droite */
+    flex-wrap: wrap;
 }
 
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+button {
+    font-family: inherit;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+button:active {
+    transform: scale(0.98);
 }
 
-.validation-status {
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-.validation-status.valide {
-    background-color: #28a745;
+.btn-primary {
+    background-color: var(--primary);
     color: white;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+}
+.btn-success:hover { background-color: var(--success-hover); }
+
+/* --- STATUS BADGES --- */
+.validation-status {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.validation-status.inconnu {
+    background-color: #f3f4f6;
+    color: var(--text-muted);
 }
 
 .validation-status.non-valide {
-    background-color: #fb9e27;
-    color: #333;
+    background-color: #fef2f2;
+    color: var(--danger);
+    border: 1px solid #fecaca;
 }
 
-.login-section {
-    text-align: center;
-    padding: 50px 0;
+.validation-status.valide {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
 }
 
-.actions {
-    margin-top: 15px;
+/* --- TOASTS / MESSAGES --- */
+#messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
     display: flex;
+    flex-direction: column;
     gap: 10px;
+}
+
+.message {
+    min-width: 300px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    animation: slideIn 0.3s ease-out;
+    background-color: white;
+    border-left: 4px solid transparent;
+}
+
+.message.success {
+    border-left-color: var(--success);
+    background-color: #ecfdf5;
+    color: #064e3b;
+}
+
+.message.error {
+    border-left-color: var(--danger);
+    background-color: #fef2f2;
+    color: #991b1b;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-info > button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .actions {
+        justify-content: stretch;
+    }
+
+    .actions button {
+        flex: 1;
+    }
+
+    .ue-section h3 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
