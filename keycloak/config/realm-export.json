@@ -770,7 +770,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "a5fdff67-bf83-45f6-99db-0366c62bca78",
+      "secret": "**********",
       "redirectUris": [
         "http://127.0.0.1:3000/*",
         "http://localhost:3000/*"
@@ -816,6 +816,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientHost",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientHost",
@@ -830,6 +831,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientAddress",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientAddress",
@@ -844,6 +846,7 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientId",
+            "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientId",
@@ -879,13 +882,12 @@
             ]
           },
           {
-            "name": "notes_ue1",
+            "name": "notes_ue2",
             "ownerManagedAccess": false,
-            "displayName": "ressource_ue1",
             "attributes": {},
-            "_id": "57a8800b-817a-49a5-933e-df811e8b04af",
+            "_id": "8671d469-2de9-4709-bb09-439e2712979c",
             "uris": [
-              "/api/notes/ue1/*"
+              "/api/notes/ue2/*"
             ],
             "scopes": [
               {
@@ -900,12 +902,13 @@
             ]
           },
           {
-            "name": "notes_ue2",
+            "name": "notes_ue1",
             "ownerManagedAccess": false,
+            "displayName": "ressource_ue1",
             "attributes": {},
-            "_id": "8671d469-2de9-4709-bb09-439e2712979c",
+            "_id": "57a8800b-817a-49a5-933e-df811e8b04af",
             "uris": [
-              "/api/notes/ue2/*"
+              "/api/notes/ue1/*"
             ],
             "scopes": [
               {
@@ -1058,37 +1061,11 @@
             "description": "Lecture UE1",
             "type": "scope",
             "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
+            "decisionStrategy": "AFFIRMATIVE",
             "config": {
               "resources": "[\"notes_ue1\"]",
               "scopes": "[\"lecture\"]",
               "applyPolicies": "[\"Policy-Enseignant-Titulaire\",\"Policy-C1\"]"
-            }
-          },
-          {
-            "id": "93218de0-1d70-4602-a74e-03410faada06",
-            "name": "E1",
-            "description": "Ecriture ue1",
-            "type": "scope",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "resources": "[\"notes_ue1\"]",
-              "scopes": "[\"écriture\"]",
-              "applyPolicies": "[\"Policy-C1\"]"
-            }
-          },
-          {
-            "id": "dfe9da31-883d-48f6-918e-4ca2463d280f",
-            "name": "V1",
-            "description": "Validation UE1",
-            "type": "scope",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "resources": "[\"notes_ue1\"]",
-              "scopes": "[\"validation\"]",
-              "applyPolicies": "[\"Policy-R1\"]"
             }
           },
           {
@@ -1097,37 +1074,11 @@
             "description": "Lecture UE2",
             "type": "scope",
             "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
+            "decisionStrategy": "AFFIRMATIVE",
             "config": {
               "resources": "[\"notes_ue2\"]",
               "scopes": "[\"lecture\"]",
               "applyPolicies": "[\"Policy-Enseignant-Titulaire\",\"Policy-C2\"]"
-            }
-          },
-          {
-            "id": "3fc60274-63b7-4fea-9846-a9268621019c",
-            "name": "E2",
-            "description": "Ecriture ue2",
-            "type": "scope",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "resources": "[\"notes_ue2\"]",
-              "scopes": "[\"écriture\"]",
-              "applyPolicies": "[\"Policy-C2\"]"
-            }
-          },
-          {
-            "id": "dcf805cf-2f81-4a84-9fb6-40385a575e65",
-            "name": "V2",
-            "description": "Validation UE2",
-            "type": "scope",
-            "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
-            "config": {
-              "resources": "[\"notes_ue2\"]",
-              "scopes": "[\"validation\"]",
-              "applyPolicies": "[\"Policy-R2\"]"
             }
           },
           {
@@ -1136,11 +1087,37 @@
             "description": "Lecture UE3",
             "type": "scope",
             "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
+            "decisionStrategy": "AFFIRMATIVE",
             "config": {
               "resources": "[\"notes_ue3\"]",
               "scopes": "[\"lecture\"]",
               "applyPolicies": "[\"Policy-Enseignant-Titulaire\",\"Policy-C3\"]"
+            }
+          },
+          {
+            "id": "93218de0-1d70-4602-a74e-03410faada06",
+            "name": "E1",
+            "description": "Ecriture ue1",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "resources": "[\"notes_ue1\"]",
+              "scopes": "[\"écriture\"]",
+              "applyPolicies": "[\"Policy-C1\"]"
+            }
+          },
+          {
+            "id": "3fc60274-63b7-4fea-9846-a9268621019c",
+            "name": "E2",
+            "description": "Ecriture ue2",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "resources": "[\"notes_ue2\"]",
+              "scopes": "[\"écriture\"]",
+              "applyPolicies": "[\"Policy-C2\"]"
             }
           },
           {
@@ -1149,11 +1126,37 @@
             "description": "Ecriture ue3",
             "type": "scope",
             "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
+            "decisionStrategy": "AFFIRMATIVE",
             "config": {
               "resources": "[\"notes_ue3\"]",
               "scopes": "[\"écriture\"]",
               "applyPolicies": "[\"Policy-C3\"]"
+            }
+          },
+          {
+            "id": "dfe9da31-883d-48f6-918e-4ca2463d280f",
+            "name": "V1",
+            "description": "Validation UE1",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "resources": "[\"notes_ue1\"]",
+              "scopes": "[\"validation\"]",
+              "applyPolicies": "[\"Policy-R1\"]"
+            }
+          },
+          {
+            "id": "dcf805cf-2f81-4a84-9fb6-40385a575e65",
+            "name": "V2",
+            "description": "Validation UE2",
+            "type": "scope",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "resources": "[\"notes_ue2\"]",
+              "scopes": "[\"validation\"]",
+              "applyPolicies": "[\"Policy-R2\"]"
             }
           },
           {
@@ -1162,7 +1165,7 @@
             "description": "Validation UE3",
             "type": "scope",
             "logic": "POSITIVE",
-            "decisionStrategy": "UNANIMOUS",
+            "decisionStrategy": "AFFIRMATIVE",
             "config": {
               "resources": "[\"notes_ue3\"]",
               "scopes": "[\"validation\"]",
@@ -1360,6 +1363,7 @@
           "consentRequired": false,
           "config": {
             "multivalued": "true",
+            "userinfo.token.claim": "true",
             "user.attribute": "foo",
             "id.token.claim": "true",
             "access.token.claim": "true",
@@ -1684,11 +1688,11 @@
           "protocolMapper": "oidc-usermodel-client-role-mapper",
           "consentRequired": false,
           "config": {
-            "multivalued": "true",
             "user.attribute": "foo",
             "access.token.claim": "true",
             "claim.name": "resource_access.${client_id}.roles",
-            "jsonType.label": "String"
+            "jsonType.label": "String",
+            "multivalued": "true"
           }
         },
         {
@@ -1706,11 +1710,11 @@
           "protocolMapper": "oidc-usermodel-realm-role-mapper",
           "consentRequired": false,
           "config": {
-            "multivalued": "true",
             "user.attribute": "foo",
             "access.token.claim": "true",
             "claim.name": "realm_access.roles",
-            "jsonType.label": "String"
+            "jsonType.label": "String",
+            "multivalued": "true"
           }
         }
       ]
@@ -1777,14 +1781,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-sha256-pairwise-sub-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-usermodel-property-mapper",
-            "saml-user-attribute-mapper",
             "saml-role-list-mapper",
+            "oidc-usermodel-attribute-mapper",
             "saml-user-property-mapper",
+            "saml-user-attribute-mapper",
             "oidc-full-name-mapper",
-            "oidc-address-mapper"
+            "oidc-address-mapper",
+            "oidc-usermodel-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper"
           ]
         }
       },
@@ -1843,14 +1847,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "saml-role-list-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-address-mapper",
             "oidc-usermodel-attribute-mapper",
             "saml-user-attribute-mapper",
-            "saml-role-list-mapper",
-            "saml-user-property-mapper",
             "oidc-full-name-mapper",
-            "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
-            "oidc-sha256-pairwise-sub-mapper"
+            "saml-user-property-mapper"
           ]
         }
       },
@@ -1918,7 +1922,7 @@
   "supportedLocales": [],
   "authenticationFlows": [
     {
-      "id": "485e154b-07c5-4817-9633-a43c93cd48a4",
+      "id": "ddd83954-9a60-4ad8-b003-a8862c25db88",
       "alias": "Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -1942,7 +1946,7 @@
       ]
     },
     {
-      "id": "d290af27-2b65-46a1-9760-963f2a418bcf",
+      "id": "a6ef70d3-b190-4da7-9c51-85ad94c76fc3",
       "alias": "Authentication Options",
       "description": "Authentication options.",
       "providerId": "basic-flow",
@@ -1973,7 +1977,7 @@
       ]
     },
     {
-      "id": "03748721-9513-4fa4-875f-223094328973",
+      "id": "daf1ac1a-c522-43ef-a3b0-19ef9935d679",
       "alias": "Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -1997,7 +2001,7 @@
       ]
     },
     {
-      "id": "15472187-d97e-4922-9710-42756c412cbf",
+      "id": "c8c2c453-cd1b-44b3-997e-43c3bf0ba4e6",
       "alias": "Direct Grant - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -2021,7 +2025,7 @@
       ]
     },
     {
-      "id": "4691a963-1de3-405a-8a9a-fab0aa00f603",
+      "id": "a3c4dee2-ef8b-432a-952e-dfa4897d42fd",
       "alias": "First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -2045,7 +2049,7 @@
       ]
     },
     {
-      "id": "750acbb6-a10f-4dda-8194-c1140cf974be",
+      "id": "6607c542-4dfe-4865-a324-4d3beca2a29c",
       "alias": "Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -2069,7 +2073,7 @@
       ]
     },
     {
-      "id": "6618cb40-de8d-4ece-84cd-7fc81b9887fd",
+      "id": "f40530cd-127b-40af-ba1f-73ffe913d553",
       "alias": "Reset - Conditional OTP",
       "description": "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
       "providerId": "basic-flow",
@@ -2093,7 +2097,7 @@
       ]
     },
     {
-      "id": "421a4a8d-72a6-4611-8b59-32ad0c3df413",
+      "id": "a4a0dced-5ab8-4fb8-936f-5c11fe4ba8f8",
       "alias": "User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -2118,7 +2122,7 @@
       ]
     },
     {
-      "id": "514615e7-a420-470c-b7c4-5b356f8f13c2",
+      "id": "e4573688-ebd5-41dd-89dc-d151c37add1a",
       "alias": "Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -2142,7 +2146,7 @@
       ]
     },
     {
-      "id": "cf848413-53d0-4a91-a7b2-cb19eeaa5539",
+      "id": "ebdb5d30-9a33-4fc0-958e-b236bf81eabb",
       "alias": "browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -2180,7 +2184,7 @@
       ]
     },
     {
-      "id": "ca4280e6-cab8-4f1d-b13e-40920442c578",
+      "id": "6a2ad9a8-0337-433f-84f1-47768d68f500",
       "alias": "clients",
       "description": "Base authentication for clients",
       "providerId": "client-flow",
@@ -2218,7 +2222,7 @@
       ]
     },
     {
-      "id": "4bb9f6cb-d5b6-47f8-9403-dd00530511d7",
+      "id": "fbbb4f3a-7930-430b-86dc-f145e9a4616f",
       "alias": "direct grant",
       "description": "OpenID Connect Resource Owner Grant",
       "providerId": "basic-flow",
@@ -2249,7 +2253,7 @@
       ]
     },
     {
-      "id": "854c7fe7-4fa7-4cfe-99e4-7aacdd030248",
+      "id": "3eac4881-33ee-48ba-a4a2-73b73d545003",
       "alias": "docker auth",
       "description": "Used by Docker clients to authenticate against the IDP",
       "providerId": "basic-flow",
@@ -2266,7 +2270,7 @@
       ]
     },
     {
-      "id": "f4f88ece-a30a-445d-9f5d-c3dfbff33751",
+      "id": "a78d2fd9-466e-4cfe-8a16-120795a2a033",
       "alias": "first broker login",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -2291,7 +2295,7 @@
       ]
     },
     {
-      "id": "1312e3bb-e691-46e2-9f34-997cb6234c44",
+      "id": "9d08db80-d1aa-43c1-be52-14f2a0525961",
       "alias": "forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -2315,7 +2319,7 @@
       ]
     },
     {
-      "id": "cff790f7-ee69-46d7-8c61-0be74561fd30",
+      "id": "19f289b6-a78a-4769-ba44-3abd4f53101b",
       "alias": "http challenge",
       "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
       "providerId": "basic-flow",
@@ -2339,7 +2343,7 @@
       ]
     },
     {
-      "id": "25a6b4a1-e5f3-4f78-bb8c-e6ec636678fb",
+      "id": "beb2154c-5b4e-462e-880e-42193a8a556f",
       "alias": "registration",
       "description": "registration flow",
       "providerId": "basic-flow",
@@ -2357,7 +2361,7 @@
       ]
     },
     {
-      "id": "7921d5ec-50a5-4e00-821c-f314ca1bad92",
+      "id": "7b5a5646-52ca-43b2-add1-ac1af789972e",
       "alias": "registration form",
       "description": "registration form",
       "providerId": "form-flow",
@@ -2395,7 +2399,7 @@
       ]
     },
     {
-      "id": "1f350412-2645-4f71-9ead-52ea8ffc0675",
+      "id": "e767aa2f-5f34-42d0-b7ef-aa21024bc01c",
       "alias": "reset credentials",
       "description": "Reset credentials for a user if they forgot their password or something",
       "providerId": "basic-flow",
@@ -2433,7 +2437,7 @@
       ]
     },
     {
-      "id": "437bc3b5-41a2-440b-b969-f57121ea923b",
+      "id": "91ac6ae8-5b4b-4280-ab5b-fbc3c742f305",
       "alias": "saml ecp",
       "description": "SAML ECP Profile Authentication Flow",
       "providerId": "basic-flow",
@@ -2452,14 +2456,14 @@
   ],
   "authenticatorConfig": [
     {
-      "id": "3dddeff6-330b-46f0-9324-32d90182f58f",
+      "id": "aa5b3a77-d736-44bb-aaea-8745277781c4",
       "alias": "create unique user config",
       "config": {
         "require.password.update.after.registration": "false"
       }
     },
     {
-      "id": "a1246c35-73fc-4eff-9607-19e905893037",
+      "id": "511b27af-44f8-4ee2-a771-6759873fb8dc",
       "alias": "review profile config",
       "config": {
         "update.profile.on.first.login": "missing"
