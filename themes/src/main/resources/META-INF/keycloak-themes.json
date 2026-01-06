@@ -1,6 +1,6 @@
 {
     "themes": [{
-        "name" : "sunrise",
+        "name" : "hyrule-theme",
         "types": [ "login" ]
     }]
 }

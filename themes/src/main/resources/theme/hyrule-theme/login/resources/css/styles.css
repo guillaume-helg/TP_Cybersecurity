@@ -1,0 +1,148 @@
+/* --- VARIABLES (Identiques à l'app principale) --- */
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg-app: #f3f4f6;
+    --bg-card: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --radius: 12px;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- LAYOUT GÉNÉRAL --- */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    /* Centrage absolu de la carte au milieu de l'écran */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- HEADER (Titre "Hyrule") --- */
+#kc-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#kc-header-wrapper {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary); /* Le titre prend la couleur de la marque */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- CARTE DE LOGIN (Le conteneur blanc) --- */
+#kc-content {
+    width: 100%;
+    max-width: 450px; /* Largeur optimale pour un login */
+}
+
+#kc-content-wrapper {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+/* --- TITRE DE LA PAGE ("Log In") --- */
+#kc-page-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-align: center;
+}
+
+/* --- FORMULAIRE --- */
+form#kc-form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement uniforme entre les champs */
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Champs de saisie (Inputs) */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Important pour ne pas casser la largeur */
+}
+
+/* Effet focus sur les inputs (Halo violet) */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* --- BOUTON DE CONNEXION --- */
+#kc-form-buttons {
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+}
+
+input[type="submit"]:hover {
+    background-color: var(--primary-hover);
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* --- LINKS (Mot de passe oublié, etc.) --- */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Nettoyage des styles Bootstrap potentiels qui traînent */
+.form-group {
+    margin-bottom: 15px;
+}
