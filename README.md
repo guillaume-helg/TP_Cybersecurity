@@ -6,17 +6,9 @@ Ce projet est une application de démonstration mettant en œuvre une architectu
 
 Le déploiement se fait en deux étapes simples : la compilation et le lancement de l'infrastructure conteneurisée.
 
-### 1. Compilation des extensions de keycloak
+### Démarrage de l'infrastructure
 
-Génère les fichiers `.jar`
-
-```bash
-mvn clean install
-```
-
-### 2. Démarrage de l'infrastructure
-
-Lance tous les services (LDAP, Keycloak, Node App) en mode détaché.
+Compile puis lance tous les services (LDAP, Keycloak, Node. App) en mode détaché.
 
 ```bash
 docker compose up
