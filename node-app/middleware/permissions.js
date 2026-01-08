@@ -1,39 +1,25 @@
-const axios = require('axios');
-const keycloakConfig = require('../config/keycloak-config');
+/**
+ * Middleware Keycloak Enforcer dynamique
+ * @param {Object} keycloak - L'instance de Keycloak
+ * @param {string} scope - Le scope requis (ex: 'lecture', 'écriture')
+ */
+function dynamicEnforcer(keycloak, scope){
+    return (req, res, next) => {
+        const ue = req.params.ue;
 
-async function checkPermission(req, res, next, ue, resource, scope) {
-    try {
-        const token = req.kauth.grant.access_token.token;
+        // Nom de la ressource
+        const resourceName = `notes_${ue}`;
 
-        // Appel à Keycloak pour vérifier les permissions UMA
-        const response = await axios.post(
-            `${keycloakConfig['auth-server-url']}realms/${keycloakConfig.realm}/protocol/openid-connect/token`,
-            new URLSearchParams({
-                grant_type: 'urn:ietf:params:oauth:grant-type:uma-ticket',
-                audience: keycloakConfig.resource,
-                permission: `${resource}#${scope}`,
-                response_mode: 'decision'
-            }),
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }
-        );
+        // Permission demandée
+        const permissions = [`${resourceName}:${scope}`];
 
-        if (response.data.result) {
-            return next();
-        } else {
-            return res.status(403).json({ error: 'Accès refusé : permissions insuffisantes' });
-        }
-    } catch (error) {
-        console.error(`Erreur permission ${scope} sur ${ue}:`, error.response?.data || error.message);
-        return res.status(403).json({
-            error: `<strong>Accès refusé :</strong> ${scope} impossible sur l'${ue}`,
-            details: error.response?.data?.error_description || 'Erreur technique Keycloak'
+        // On instancie et exécute le middleware officiel "enforcer"
+        const enforcerMiddleware = keycloak.enforcer(permissions, {
+            response_mode: 'permissions'
         });
-    }
+
+        enforcerMiddleware(req, res, next);
+    };
 }
 
-module.exports = checkPermission;
+module.exports = dynamicEnforcer;

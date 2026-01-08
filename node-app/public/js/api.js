@@ -1,5 +1,3 @@
-import { showMessage } from './ui.js';
-
 export async function apiCall(url, options = {}) {
     try {
         const defaultHeaders = { 'Content-Type': 'application/json' };
@@ -15,7 +13,6 @@ export async function apiCall(url, options = {}) {
         if (!response.ok) throw new Error(data.error || 'Erreur inattendue');
         return data;
     } catch (error) {
-        showMessage(error.message, 'error');
         throw error;
     }
 }

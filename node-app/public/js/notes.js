@@ -29,7 +29,9 @@ export async function loadNotes(ue) {
         tbody.appendChild(fragment);
         updateValidationStatus(ue, data.valide);
         showMessage(`Notes de ${ue.toUpperCase()} chargées`);
-    } catch (e) {}
+    } catch (e) {
+        showMessage(`<strong>Accès refusé :</strong> Lecture impossible sur l'${ue.toUpperCase()}`, 'error');
+    }
 }
 
 export async function saveNotes(ue) {
@@ -47,7 +49,9 @@ export async function saveNotes(ue) {
             body: { notes }
         });
         showMessage(data.message);
-    } catch (e) {}
+    } catch (e) {
+        showMessage(`<strong>Accès refusé :</strong> Modification impossible sur l'${ue.toUpperCase()}`, 'error');
+    }
 }
 
 export async function validateNotes(ue) {
@@ -56,5 +60,7 @@ export async function validateNotes(ue) {
         showMessage(data.message);
         updateValidationStatus(ue, true);
         loadNotes(ue);
-    } catch (e) {}
+    } catch (e) {
+        showMessage(`<strong>Accès refusé :</strong> Validation impossible sur l'${ue.toUpperCase()}`, 'error');
+    }
 }

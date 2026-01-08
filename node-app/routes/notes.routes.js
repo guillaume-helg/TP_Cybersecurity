@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { notesStorage, validationStatus, saveChanges} = require('../data/store');
-const checkPermission = require('../middleware/permissions');
+const dynamicEnforcer = require('../middleware/permissions');
 
 module.exports = (keycloak) => {
 
     // Lire les notes (GET)
-    router.get('/api/notes/:ue', keycloak.protect(), async (req, res, next) => {
-        const ue = req.params.ue;
-        // Middleware spécifique injecté ici
-        await checkPermission(req, res, next, ue, `notes_${ue}`, 'lecture');
-    }, (req, res) => {
+    router.get('/api/notes/:ue', keycloak.protect(), dynamicEnforcer(keycloak, 'lecture'), (req, res) => {
         const ue = req.params.ue;
         res.json({
             ue: ue.toUpperCase(),
@@ -20,10 +16,7 @@ module.exports = (keycloak) => {
     });
 
     // Modifier les notes (POST)
-    router.post('/api/notes/:ue', keycloak.protect(), async (req, res, next) => {
-        const ue = req.params.ue;
-        await checkPermission(req, res, next, ue, `notes_${ue}`, 'écriture');
-    }, (req, res) => {
+    router.post('/api/notes/:ue', keycloak.protect(), dynamicEnforcer(keycloak, 'écriture'), (req, res) => {
         const ue = req.params.ue;
         const { notes } = req.body;
 
@@ -38,10 +31,7 @@ module.exports = (keycloak) => {
     });
 
     // Valider les notes (POST)
-    router.post('/api/notes/:ue/valider', keycloak.protect(), async (req, res, next) => {
-        const ue = req.params.ue;
-        await checkPermission(req, res, next, ue, `notes_${ue}`, 'validation');
-    }, (req, res) => {
+    router.post('/api/notes/:ue/valider', keycloak.protect(), dynamicEnforcer(keycloak, 'validation'), (req, res) => {
         const ue = req.params.ue;
 
         if (validationStatus[ue]) {
